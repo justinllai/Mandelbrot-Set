@@ -14,7 +14,7 @@
 
         RenderWindow window(VideoMode(screenW, screenH), "Mandelbrot Set");
 
-        ComplexPlane ComplexPlane(screenW, screenH);
+        ComplexPlane complexPlane(screenW, screenH);
 
         Font font;
 
@@ -47,19 +47,19 @@
 
                     if (event.mouseButton.button == Mouse::Left)
                     {
-                        ComplexPlane.zoomIn();
-                        ComplexPlane.setCenter(mousePixel);
+                        complexPlane.zoomIn();
+                        complexPlane.setCenter(mousePixel);
                     }
                     if (event.mouseButton.button == Mouse::Right)
                     {
-                        ComplexPlane.zoomOut();
-                        ComplexPlane.setCenter(mousePixel);
+                        complexPlane.zoomOut();
+                        complexPlane.setCenter(mousePixel);
                     }
                 }
                 if (event.type == Event::MouseMoved)
                 {
                     Vector2i mousePixel = Mouse::getPosition(window);
-                    ComplexPlane.setMouseLocation(mousePixel);
+                    complexPlane.setMouseLocation(mousePixel);
                 }
                 if (Keyboard::isKeyPressed(Keyboard::Escape))
                 {
@@ -68,8 +68,8 @@
             }
         
 
-            ComplexPlane.updateRender();
-            ComplexPlane.loadText(text);
+            complexPlane.updateRender();
+            complexPlane.loadText(text);
 
             window.clear();
 
