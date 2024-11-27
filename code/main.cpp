@@ -28,7 +28,7 @@
         text.setFont(font);
         text.setCharacterSize(24);
         text.setFillColor(Color::Red);
-        text.setPosition(10.f, 10.0f);
+        text.setPosition(10.0f, 10.0f);
 
         while (window.isOpen())
         {
