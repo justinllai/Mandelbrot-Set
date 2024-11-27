@@ -73,7 +73,7 @@
 
             window.clear();
 
-            window.draw(ComplexPlane);
+            window.draw(complexPlane);
             window.draw(text);
 
             window.display();
