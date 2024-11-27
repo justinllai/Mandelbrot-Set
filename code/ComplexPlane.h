@@ -16,7 +16,7 @@ enum class State
 	CALCULATING,
 	DISPLAYING
 };
-class ComplexPlane
+class ComplexPlane : public Drawable
 {
 	public:
 		ComplexPlane(int pixelWidth, int pixelHeight);
@@ -45,7 +45,7 @@ class ComplexPlane
 		
 };
 
-#endif COMPLEXPLANE_H
+#endif
 
 
 

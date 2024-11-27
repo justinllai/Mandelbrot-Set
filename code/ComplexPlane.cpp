@@ -16,10 +16,10 @@ ComplexPlane::ComplexPlane(int pixelWidth, int pixelHeight)
 	
 	m_plane_center.x = 0.0;
 	m_plane_center.y = 0.0;
-	m_plane_size = (BASE_WIDTH, BASE_HEIGHT* m_aspectRatio);
+	m_plane_size = {BASE_WIDTH, BASE_HEIGHT* m_aspectRatio};
 	m_zoomCount = 0;
 	m_State = State::CALCULATING;
-	m_vArray.setPrimitiveType(Points);
+	m_vArray.setPrimitiveType(PrimitiveType::Points);
 	m_vArray.resize(pixelWidth * pixelHeight);
 
 }
@@ -37,7 +37,7 @@ void ComplexPlane::updateRender()
 		{
 			for (int j = 0; j < m_pixel_size.x; j++) //x-axis loop
 			{
-				m_vArray[j + i * m_pixel_size.x].position =  ((float)j,(float)i);
+				m_vArray[j + i * m_pixel_size.x].position =  {static_cast<float>(j),static_cast<float>(i)};
 
 				Vector2i coord(j, i);
 				Vector2f complexCoord = ComplexPlane::mapPixelToCoords(coord);
@@ -46,9 +46,9 @@ void ComplexPlane::updateRender()
 
 				Uint8 r, g, b;
 
-				ComplexPlane::iterationsToRGB(iterations, &r, &g, &b);
+				ComplexPlane::iterationsToRGB(iterations, r, g, b);
 
-				m_vArray[j + i * m_pixel_size.x].color = r, g, b;
+				m_vArray[j + i * m_pixel_size.x].color = Color(r, g, b);
 			}
 		}
 		m_State = State::DISPLAYING;
@@ -115,7 +115,7 @@ int ComplexPlane::countIterations(Vector2f coord)
 
 void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
 {
-	int range = MAX_ITER / 5;
+	long unsigned int range = MAX_ITER / 5;
 		if (count == MAX_ITER)
 		{
 			r = 0;

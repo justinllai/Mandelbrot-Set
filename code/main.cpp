@@ -1,31 +1,3 @@
-#include "ComplexPlane.h"
-#include <iostream>
-#include <SFML/Graphics.hpp>
-
-using namespace std;
-using namespace sf;
-
-int main()
-{
-    //get desktop resoltion
-    int screenW = VideoMode::getDesktopMode().width / 2;
-    int screenH = VideoMode::getDesktopMode().height / 2;
-
-    RenderWindow window(VideoMode(screenW, screenH), "Mandelbrot Set");
-
-    ComplexPlane ComplexPlane(screenW, screenH);
-
-    Font font;
-
-    if (!font.loadFromFile("arial.ttf"))
-    {
-        return -1;
-    }
-    
-    Text text;
-    text.setFont(font);
-    text.setCharacterSize(24);
-    text.setFillColor(Color::Red);
 
 #include "ComplexPlane.h"
 #include <iostream>
@@ -46,7 +18,7 @@ int main()
 
         Font font;
 
-        if (!font.loadFromFile("arial.ttf"))
+        if (!font.loadFromFile("Arial.ttf"))
         {
             return -1;
         }
@@ -75,19 +47,19 @@ int main()
 
                     if (event.mouseButton.button == Mouse::Left)
                     {
-                        complexPlane.zoomIn();
-                        complexPlane.setCenter(mousePixel);
+                        ComplexPlane.zoomIn();
+                        ComplexPlane.setCenter(mousePixel);
                     }
                     if (event.mouseButton.button == Mouse::Right)
                     {
-                        complexPlane.zoomOut();
-                        complexPlane.setCenter(mousePixel);
+                        ComplexPlane.zoomOut();
+                        ComplexPlane.setCenter(mousePixel);
                     }
                 }
                 if (event.type == Event::MouseMoved)
                 {
                     Vector2i mousePixel = Mouse::getPosition(window);
-                    complexPlane.setMouseLocation(mousePixel);
+                    ComplexPlane.setMouseLocation(mousePixel);
                 }
                 if (Keyboard::isKeyPressed(Keyboard::Escape))
                 {
@@ -96,12 +68,12 @@ int main()
             }
         
 
-            complexPlane.updateRender();
-            complexPlane.loadText(text);
+            ComplexPlane.updateRender();
+            ComplexPlane.loadText(text);
 
             window.clear();
 
-            window.draw(complexPlane);
+            window.draw(ComplexPlane);
             window.draw(text);
 
             window.display();
