@@ -96,8 +96,7 @@ void ComplexPlane::loadText(Text& text)
 	output << "Left-click to Zoom in" << endl;
 	output << "Right-click to Zoom out" << endl;
 
-	string result = output.str();
-	cout << result;
+	text.setString(output.str());
 }
 
 int ComplexPlane::countIterations(Vector2f coord)
